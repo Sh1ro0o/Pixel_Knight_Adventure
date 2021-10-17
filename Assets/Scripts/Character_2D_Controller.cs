@@ -6,7 +6,7 @@ public class Character_2D_Controller : MonoBehaviour
 {
     public float movementSpeed = 5f;
     public float crouchSpeed = 3f;
-    public float jumpForce = 5.5f;
+    public float jumpForce = 6.5f;
     [Range(0.2f, 1f)] public float wallSlideSpeed = 0.5f; 
     [SerializeField] Collider2D crouchDisableCollider;
     [SerializeField] Transform groundCheckCollider;
@@ -54,8 +54,18 @@ public class Character_2D_Controller : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
+        //user movement input
         horizontalMovement = Input.GetAxisRaw("Horizontal");
         verticalMovement = Input.GetAxisRaw("Vertical");
+
+        //checks if we are touching ground
+        GroundCheck();
+
+        //checks if we are touching ceiling
+        CeilingCheck();
+
+        //checks if we are touching wall
+        WallCheck();
 
         //updates animator speed parameter we have set ourselves
         animator.SetFloat("Speed", Mathf.Abs(horizontalMovement));
@@ -99,14 +109,7 @@ public class Character_2D_Controller : MonoBehaviour
 
     private void FixedUpdate()
     {
-        //checks if we are touching ground
-        GroundCheck();
-
-        //checks if we are touching ceiling
-        CeilingCheck();
-
-        //checks if we are touching wall
-        WallCheck();
+        
 
         //ALTERNATIVE: transform.position += new Vector3(horizontalMovement, 0, 0) * Time.fixedDeltaTime * movementSpeed;
 
@@ -206,13 +209,17 @@ public class Character_2D_Controller : MonoBehaviour
     private void GroundCheck()
     {
         isGrounded = false;
-        //if anything colides with that groundcheck radius we created it gets stored into colliders array
-        Collider2D[] colliders = Physics2D.OverlapCircleAll(groundCheckCollider.position, groundCheckRadius, groundLayer);
-        if (colliders.Length > 0)
+        //only check if the player is stationary in the y-axis since we dont have any slopes in the game (if you have slopes just check for velocity.y == 0 when you are jumping)
+        if (_rigidbody.velocity.y == 0)
         {
-            //we are grounded
-            isGrounded = true;
-            //Debug.Log("We are grounded!");
+            //if anything colides with that groundcheck radius we created it gets stored into colliders array
+            Collider2D[] colliders = Physics2D.OverlapCircleAll(groundCheckCollider.position, groundCheckRadius, groundLayer);
+            if (colliders.Length > 0)
+            {
+                //we are grounded
+                isGrounded = true;
+                //Debug.Log("We are grounded!");
+            }
         }
     }
 
