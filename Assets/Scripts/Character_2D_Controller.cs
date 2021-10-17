@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Character_2D_Controller : MonoBehaviour
 {
+    //PUBLIC
     public float movementSpeed = 5f;
     public float crouchSpeed = 3f;
     public float jumpForce = 6.5f;
@@ -86,7 +87,6 @@ public class Character_2D_Controller : MonoBehaviour
                 jumpFlag = true;
                 animator.SetBool("isDoubleJumping", true);
             }
-
         }
 
         //checks if the player landed and resets double jump
@@ -109,10 +109,7 @@ public class Character_2D_Controller : MonoBehaviour
 
     private void FixedUpdate()
     {
-        
-
         //ALTERNATIVE: transform.position += new Vector3(horizontalMovement, 0, 0) * Time.fixedDeltaTime * movementSpeed;
-
         //move when crouched
         if (isCrouching)
             transform.Translate(Mathf.Abs(horizontalMovement * Time.fixedDeltaTime * crouchSpeed), 0, 0);
@@ -148,10 +145,7 @@ public class Character_2D_Controller : MonoBehaviour
 
         //checks if player is falling
         if (_rigidbody.velocity.y < 0 && !isGrounded)
-        {
             isFalling = true;
-            Debug.Log("is falling");
-        }
         else
             isFalling = false;
 
