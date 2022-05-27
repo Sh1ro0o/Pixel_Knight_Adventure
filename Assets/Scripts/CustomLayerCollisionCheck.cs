@@ -7,11 +7,12 @@ public class CustomLayerCollisionCheck : MonoBehaviour
     //PUBLIC
     [SerializeField] LayerMask platformLayer;
     public bool isPlayerPlatformCollision = false;
+    public string platformObjectName;
 
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
     private void FixedUpdate()

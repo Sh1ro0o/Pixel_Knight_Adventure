@@ -9,19 +9,19 @@ public class Character_2D_Controller : MonoBehaviour
     public float crouchSpeed = 3f;
     public float jumpForce = 6.5f;
     [Range(0.2f, 1f)] public float wallSlideSpeed = 0.5f; 
-    [SerializeField] Collider2D crouchDisableCollider;
-    [SerializeField] Transform groundCheckCollider;
-    [SerializeField] Transform ceilingCheckCollider;
-    [SerializeField] Transform wallCheckCollider;
-    [SerializeField] LayerMask groundLayer;
-    [SerializeField] LayerMask wallLayer;
+    public Collider2D crouchDisableCollider;
+    public Transform groundCheckCollider;
+    public Transform ceilingCheckCollider;
+    public Transform wallCheckCollider;
+    public LayerMask groundLayer;
+    public LayerMask wallLayer;
     public Animator animator;
     private Rigidbody2D _rigidbody;
 
     //CONST
     const float groundCheckRadius = 0.1f;
     const float ceilingCheckRadius = 0.2f;
-    const float wallCheckRadius = 0.1f;
+    const float wallCheckRadius = 0.05f;
     const float maxJumps = 2f;
 
     //PLAYER MOVEMENT
@@ -46,6 +46,7 @@ public class Character_2D_Controller : MonoBehaviour
 
     //WALL-SLIDING
     bool isWallSliding = false;
+    bool isJumpingOffWall = false;
 
     private void Start()
     {
@@ -129,7 +130,6 @@ public class Character_2D_Controller : MonoBehaviour
             jumpsLeft--;
             isGrounded = false;
             isJumping = true;
-
             jumpFlag = false;
         }
 
@@ -154,6 +154,7 @@ public class Character_2D_Controller : MonoBehaviour
         {
             //tuns back to jump animation from double-jump animation
             animator.SetBool("isDoubleJumping", false);
+            animator.SetBool("isJumping", true);
         }
 
         //removes colider when crouched
@@ -175,7 +176,7 @@ public class Character_2D_Controller : MonoBehaviour
         }
 
         //wall-slide
-        if (isTouchingWall && !isGrounded && Mathf.Abs(horizontalMovement) > 0 && isFalling)
+        if (isTouchingWall && !isGrounded && Mathf.Abs(horizontalMovement) > 0)
         {
             isWallSliding = true;
             _rigidbody.velocity = new Vector2(0, -wallSlideSpeed);
@@ -183,6 +184,13 @@ public class Character_2D_Controller : MonoBehaviour
 
             //if wall sliding means its not jumping
             isJumping = false;
+
+            //sets jumps to 1 because you can only single jump from a wall
+            if(!isJumpingOffWall)
+            {
+                isJumpingOffWall = true;
+                jumpsLeft = 1;
+            }
         }
         else
         {
@@ -212,7 +220,8 @@ public class Character_2D_Controller : MonoBehaviour
             {
                 //we are grounded
                 isGrounded = true;
-                //Debug.Log("We are grounded!");
+                isJumpingOffWall = false;
+                Debug.Log("We are grounded!");
             }
         }
     }
@@ -243,3 +252,5 @@ public class Character_2D_Controller : MonoBehaviour
         }
     }
 }
+
+//maybe move isGrounded form fixed update to update

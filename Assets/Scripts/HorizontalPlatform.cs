@@ -31,7 +31,7 @@ public class HorizontalPlatform : MonoBehaviour
 
     private void FixedUpdate()
     {
-        //we bitshift the collidermask to remove the Player layer so on button press down it falls down and then we re-enable it when the button is released
+        //use logical gates on the collidermask to remove the Player layer so on button press down it falls down and then we re-enable it when the button is released
         //for this code to work the Player layer must be Layer 3 (number 8 bitwise)
         if(isDownButtonPressed)
         {
