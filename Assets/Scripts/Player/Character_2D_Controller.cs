@@ -221,7 +221,7 @@ public class Character_2D_Controller : MonoBehaviour
                 //we are grounded
                 isGrounded = true;
                 isJumpingOffWall = false;
-                Debug.Log("We are grounded!");
+                //Debug.Log("We are grounded!");
             }
         }
     }

@@ -28,7 +28,7 @@ public class CustomLayerCollisionCheck : MonoBehaviour
         if (hit)
         {
             isPlayerPlatformCollision = true;
-            Debug.Log("Hit!");
+            //Debug.Log("Hit!");
         }
         else
             isPlayerPlatformCollision = false;

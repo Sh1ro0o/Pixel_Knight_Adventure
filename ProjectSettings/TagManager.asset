@@ -15,7 +15,7 @@ TagManager:
   - Platform
   - FloorsAndCeiling
   - Background
-  - 
+  - Enemy
   - 
   - 
   - 
@@ -52,6 +52,9 @@ TagManager:
     locked: 0
   - name: Particles
     uniqueID: 3400647849
+    locked: 0
+  - name: Enemy
+    uniqueID: 851133363
     locked: 0
   - name: Player
     uniqueID: 1877444723
