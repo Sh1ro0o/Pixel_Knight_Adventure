@@ -2,87 +2,90 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Samurai : Enemy
+public class MeleeSingleStrike : Combatant
 {
     [Header("Attack Specifics")]
     public Transform attackPointRadius;
     [SerializeField] public float attackRange = 0.5f;
     [SerializeField] protected float attackCooldown = 2f;
-    [SerializeField] protected float timeSinceLastAttacked = 0f;
+    [SerializeField] protected float timeSinceLastAttackAnimation = 0f;
+    [SerializeField] protected float lowestCooldownPossible = 2f;
     [SerializeField] bool isAttacking = false;
 
     [Header("Deal damage to enemy")]
     [SerializeField] float damageDealTimerStart = 0f;
-    [SerializeField] float damageDealTimerStop = 2f;
+    [SerializeField] float damageDealTimerStop = 1f;
+    [SerializeField] bool enemyDetected = false;
 
-    private void Start()
+    public void Start()
     {
         //ignores collision with specified non collidable layers
         Physics2D.IgnoreLayerCollision(gameObject.layer, LayerMask.NameToLayer("Player"));
 
-        //attack cd can't be lower than 2
-        if (attackCooldown < 2)
-            attackCooldown = 2;
-
-        //sets attack rate
-        damageDealTimerStop = attackCooldown - 1;
+        //attack cd can't be lower than lowest possible cooldown
+        if (attackCooldown < lowestCooldownPossible)
+            attackCooldown = lowestCooldownPossible;
 
         //sets samurai stats
         currentHealth = maxHealth;
         currentDamage = maxDamage;
 
         //resets cooldowns
-        timeSinceLastAttacked = attackCooldown;
+        timeSinceLastAttackAnimation = attackCooldown;
     }
 
     protected override void Update()
     {
         //animation timer
-        timeSinceLastAttacked += Time.deltaTime;
+        timeSinceLastAttackAnimation += Time.deltaTime;
         //damage timer
         damageDealTimerStart += Time.deltaTime;
 
-        if (timeSinceLastAttacked >= attackCooldown)
+        //detects enemies as long as we are alive   
+        if (!IsDead())
         {
-            //attacks if we are alive   
-            if (!IsDead())
-            {
-                EnemyDetection();
-            }
-        }
+            EnemyDetection();
 
-        if (isAttacking && (damageDealTimerStart > damageDealTimerStop) && !IsDead())
-        {
-            Attack();
+            //if we detected at least 1 enemy we launch an attack animation as long as the attack is not on cooldown
+            if (!isAttacking && enemyDetected && (timeSinceLastAttackAnimation >= attackCooldown))
+            {
+                isAttacking = true;
+                //attack animation
+                animator.SetTrigger("Attack");
+                //we start the cooldown timer if we tried to attack an enemy
+                timeSinceLastAttackAnimation = 0f;
+                //we wait for the sword animation to pull out the sword before the strike
+                damageDealTimerStart = 0f;
+            }
+
+            if (isAttacking && (damageDealTimerStart > damageDealTimerStop))
+            {
+                Attack();
+            }
         }
     }
 
-    protected override void EnemyDetection()
+    protected void EnemyDetection()
     {
-        //enemies detection triggering animation
+        //checks detection radius for enemies
         Collider2D[] detectedEnemies = Physics2D.OverlapCircleAll(attackPointRadius.position, attackRange, enemy);
 
+        //checks if any alive enemies are in the detection zone
         bool foundAliveEnemy = false;
         foreach (Collider2D enemy in detectedEnemies)
         {
-            //checks if any alive enemies are in the detection zone
-            if (!enemy.GetComponent<PlayerCombat>().isCurrentlyDead)
+            if (!enemy.GetComponent<Combatant>().IsDead())
             {
                 foundAliveEnemy = true;
+                break;
             }
         }
 
-        //if we detected more than 1 enemy we launch an attack animation
-        if (detectedEnemies.Length > 0 && !isAttacking && foundAliveEnemy)
-        {
-            isAttacking = true;
-            //attack animation
-            animator.SetTrigger("Attack");
-            //we start the cooldown if tried to attack an enemy
-            timeSinceLastAttacked = 0f;
-            //we wait 1 second of animation for the sword to be pulled out before the strike
-            damageDealTimerStart = 0f;
-        }
+        //sets if we detected an enemy
+        if (foundAliveEnemy)
+            enemyDetected = true;
+        else
+            enemyDetected = false;
     }
 
     protected override void Attack()
@@ -94,9 +97,9 @@ public class Samurai : Enemy
         foreach (Collider2D enemy in detectedEnemies)
         {
             //hits at least one if the detected is not dead
-            if(!enemy.GetComponent<PlayerCombat>().isCurrentlyDead)
+            if(!enemy.GetComponent<Combatant>().IsDead())
             {
-                enemy.GetComponent<PlayerCombat>().TakeDamage(currentDamage);
+                enemy.GetComponent<Combatant>().TakeDamage(currentDamage);
                 Debug.Log(enemy.name + " has taken " + currentDamage);
             }
         }
@@ -107,7 +110,7 @@ public class Samurai : Enemy
     //draws our sphere for detecting
     private void OnDrawGizmosSelected()
     {
-        // iff attack point hasen't been assigned yet
+        // if attack point hasen't been assigned yet
         if (attackPointRadius == null)
             return;
 

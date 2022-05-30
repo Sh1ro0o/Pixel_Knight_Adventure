@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class Enemy : MonoBehaviour
+public abstract class Combatant : MonoBehaviour
 {
     [Header("Animator")]
     [SerializeField] protected Animator animator;
@@ -14,12 +14,10 @@ public abstract class Enemy : MonoBehaviour
     [Header("Attack")]
     [SerializeField] protected int maxDamage = 10;
     [SerializeField] protected int currentDamage;
-    [SerializeField] public LayerMask enemy;
+    [SerializeField] protected LayerMask enemy;
 
     [Header("Status")]
     [SerializeField] protected bool isCurrentlyDead = false;
-
-    protected abstract void EnemyDetection();
 
     protected abstract void Attack();
 

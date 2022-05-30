@@ -8,7 +8,7 @@ public class Character_2D_Controller : MonoBehaviour
     public float movementSpeed = 5f;
     public float crouchSpeed = 3f;
     public float jumpForce = 6.5f;
-    [Range(0.2f, 1f)] public float wallSlideSpeed = 0.5f; 
+    [Range(0.2f, 1f)] public float wallSlideSpeed = 0.5f;
     public Collider2D crouchDisableCollider;
     public Transform groundCheckCollider;
     public Transform ceilingCheckCollider;
@@ -186,7 +186,7 @@ public class Character_2D_Controller : MonoBehaviour
             isJumping = false;
 
             //sets jumps to 1 because you can only single jump from a wall
-            if(!isJumpingOffWall)
+            if (!isJumpingOffWall)
             {
                 isJumpingOffWall = true;
                 jumpsLeft = 1;
@@ -252,5 +252,3 @@ public class Character_2D_Controller : MonoBehaviour
         }
     }
 }
-
-//maybe move isGrounded form fixed update to update
