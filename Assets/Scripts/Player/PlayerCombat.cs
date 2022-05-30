@@ -11,50 +11,85 @@ public class PlayerCombat : MonoBehaviour
 
     //combat variables
     public int maxDamage = 10;
-    public int maxHealth = 100;
+    public int maxHealth = 50;
     public float attackRange = 0.5f;
-    public float attackRate = 2f;
-    float nextAttackTime = 0f;
+    public float attackCooldown = 1f;
+    float timeSinceLastAttack = 0f;
     int currentHealth;
     int currentDamage;
-    bool isAlive = true;
+    public bool isCurrentlyDead = false;
 
     private void Start()
     {
         currentHealth = maxHealth;
         currentDamage = maxDamage;
-        attackRate = 1f;
+        timeSinceLastAttack = attackCooldown;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(Time.time >= nextAttackTime && Input.GetButtonDown("Attack") && isAlive)
+        timeSinceLastAttack += Time.deltaTime;
+        if(timeSinceLastAttack >= attackCooldown && Input.GetButtonDown("Attack"))
         {
             Attack();
-            nextAttackTime = Time.time + 1f / attackRate;
+            timeSinceLastAttack = 0f;
         }
-
     }
 
     void Attack()
     {
-        //attack animation
-        animator.SetTrigger("Attack");
-
-        //enemies detection
-        Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPointRadius.position, attackRange, enemy);
-
-        //damage enemies
-        foreach(Collider2D enemy in hitEnemies)
+        if (!isCurrentlyDead)
         {
-            //Checks if enemy is already dead
-            if(!(enemy.GetComponent<Samurai>().IsDead()))
+            //attack animation
+            animator.SetTrigger("Attack");
+
+            //enemies detection
+            Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPointRadius.position, attackRange, enemy);
+
+            //damage enemies
+            foreach (Collider2D enemy in hitEnemies)
             {
-                Debug.Log("You hit " + enemy.name);
-                enemy.GetComponent<Enemy>().TakeDamage(currentDamage);
+                //Checks if enemy is already dead
+                if (!(enemy.GetComponent<Samurai>().IsDead()))
+                {
+                    Debug.Log("You hit " + enemy.name);
+                    enemy.GetComponent<Enemy>().TakeDamage(currentDamage);
+                }
             }
         }
+    }
+
+    public void TakeDamage(int damage)
+    {
+        if (!isCurrentlyDead)
+        {
+            currentHealth -= damage;
+
+            //play hurt animation
+            Debug.Log("Player received damage");
+            animator.SetTrigger("isDamaged");
+
+            //checks if dead
+            if (currentHealth <= 0)
+            {
+                Die();
+            }
+        }
+    }
+
+    public void Die()
+    {
+        Debug.Log("Player died!");
+
+        //stop animations from playing and play death animation
+        animator.StopPlayback();
+        animator.Play("Player_death");
+
+        //Die animation
+        animator.SetBool("isDead", true);
+
+        isCurrentlyDead = true;
     }
 
     //draws our sphere for detecting

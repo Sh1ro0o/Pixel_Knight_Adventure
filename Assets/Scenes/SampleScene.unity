@@ -4489,7 +4489,7 @@ MonoBehaviour:
   maxDamage: 10
   maxHealth: 100
   attackRange: 0.5
-  attackRate: 2
+  attackCooldown: 1
 --- !u!1 &1613181555
 GameObject:
   m_ObjectHideFlags: 0
@@ -5863,22 +5863,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bbceef91136decf41a04ebeee86d319b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  animator: {fileID: 2050115311}
   maxHealth: 50
   currentHealth: 0
   maxDamage: 10
   currentDamage: 0
-  attackCooldown: 2
-  timeSinceLastAttacked: 0
   enemy:
     serializedVersion: 2
     m_Bits: 8
+  name: Samurai
   isCurrentlyDead: 0
   attackPointRadius: {fileID: 1160820150}
   attackRange: 1
+  attackCooldown: 2
+  timeSinceLastAttacked: 0
   isAttacking: 0
   damageDealTimerStart: 0
   damageDealTimerStop: 1.5
-  animator: {fileID: 2050115311}
 --- !u!95 &2050115311
 Animator:
   serializedVersion: 3

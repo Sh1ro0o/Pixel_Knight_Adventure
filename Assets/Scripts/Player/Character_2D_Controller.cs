@@ -73,7 +73,7 @@ public class Character_2D_Controller : MonoBehaviour
         animator.SetFloat("Speed", Mathf.Abs(horizontalMovement));
 
         //jump button
-        if (Input.GetButtonDown("Jump"))
+        if (Input.GetButtonDown("Jump") && !isWallSliding)
         {
             //checks if player has jumps left
             //play jump animation
