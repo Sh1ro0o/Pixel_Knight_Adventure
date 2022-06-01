@@ -1146,7 +1146,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 519420028}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.7012587, y: 2.0149703, z: -10}
+  m_LocalPosition: {x: 1.7864952, y: 2.0146332, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -4504,10 +4504,12 @@ MonoBehaviour:
   enemy:
     serializedVersion: 2
     m_Bits: 1024
+  attackCooldown: 1
+  lowestCooldownPossible: 1
   isCurrentlyDead: 0
+  isAttacking: 0
   attackPointRadius: {fileID: 90665011}
   attackRange: 0.5
-  attackCooldown: 1
 --- !u!1 &1404819265
 GameObject:
   m_ObjectHideFlags: 0
@@ -5759,7 +5761,6 @@ GameObject:
   - component: {fileID: 2050115306}
   - component: {fileID: 2050115311}
   - component: {fileID: 2050115310}
-  - component: {fileID: 2050115313}
   - component: {fileID: 2050115312}
   m_Layer: 10
   m_Name: Samurai
@@ -5864,7 +5865,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2050115305}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.6, y: -1.36, z: 0}
+  m_LocalPosition: {x: -2.6, y: 0.06, z: 0}
   m_LocalScale: {x: 3.06, y: 2.52, z: 1}
   m_Children:
   - {fileID: 1160820150}
@@ -5893,16 +5894,16 @@ MonoBehaviour:
   enemy:
     serializedVersion: 2
     m_Bits: 8
+  attackCooldown: 2
+  lowestCooldownPossible: 2
   isCurrentlyDead: 0
+  isAttacking: 0
   attackPointRadius: {fileID: 1160820150}
   attackRange: 1
-  attackCooldown: 2
   timeSinceLastAttackAnimation: 0
-  lowestCooldownPossible: 2
-  isAttacking: 0
   damageDealTimerStart: 0
   damageDealTimerStop: 1
-  enemyDetected: 0
+  isEnemyDetected: 0
 --- !u!95 &2050115311
 Animator:
   serializedVersion: 3
@@ -5947,15 +5948,3 @@ MonoBehaviour:
   wall:
     serializedVersion: 2
     m_Bits: 64
---- !u!114 &2050115313
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2050115305}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 56ed1ab695d9ce04b9a9d84b30e19092, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 

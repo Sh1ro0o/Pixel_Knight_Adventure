@@ -22,22 +22,38 @@ public class DefaultEnemyMovement : MonoBehaviour
     [SerializeField] float wallCheckRadius = 0.05f;
     [SerializeField] LayerMask wall;
 
+    Combatant combatant;
+    protected float timeSinceLastAttack = 0f;
+
     // Start is called before the first frame update
     private void Start()
     {
-        
+        combatant = GetComponent<Combatant>();
+        timeSinceLastAttack = combatant.GetAttackCooldown();
     }
 
     // Update is called once per frame
     private void Update()
     {
-        //if we move near the edge or a wall we turn around
-        if (EdgeCheck() || WallCheck())
-            Flip();
-        else
-            Move();
+        timeSinceLastAttack += Time.deltaTime;
 
-        //Debug.Log("Movement direction: " + (short)movementDirection);
+        //if not dead
+        if (!combatant.IsDead())
+        {
+            if (!combatant.IsAttacking() && timeSinceLastAttack >= combatant.GetAttackCooldown())
+            {
+                //if we move near the edge or a wall we turn around
+                if (EdgeCheck() || WallCheck())
+                    Flip();
+                else
+                    Move();
+            }
+            if (combatant.IsAttacking())
+            {
+                timeSinceLastAttack = 0f;
+                animator.SetBool("isRunning", false);
+            }
+        }
     }
 
     private void FixedUpdate()

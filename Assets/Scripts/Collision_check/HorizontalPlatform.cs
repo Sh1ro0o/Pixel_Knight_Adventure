@@ -8,10 +8,11 @@ public class HorizontalPlatform : MonoBehaviour
     [SerializeField] PlatformEffector2D platformEffector;
     bool isDownButtonPressed = false;
     bool DownButtonReleasedFlag = false;
-    private CustomLayerCollisionCheck customLayerColisionCheck;
+    CustomLayerCollisionCheck customLayerColisionCheck;
 
     private void Start()
     {
+        //this is another way of finding a script thats not on the current object but it takes a lot of time
         customLayerColisionCheck = FindObjectOfType<CustomLayerCollisionCheck>();
     }
 

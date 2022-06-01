@@ -15,12 +15,22 @@ public abstract class Combatant : MonoBehaviour
     [SerializeField] protected int maxDamage = 10;
     [SerializeField] protected int currentDamage;
     [SerializeField] protected LayerMask enemy;
+    [SerializeField] protected float attackCooldown = 2f;
+    [SerializeField] protected float lowestCooldownPossible = 2f;
 
     [Header("Status")]
     [SerializeField] protected bool isCurrentlyDead = false;
+    [SerializeField] protected bool isAttacking = false;
 
+    protected abstract void Update();
     protected abstract void Attack();
 
+    protected virtual void Start()
+    {
+        //attack cd can't be lower than lowest possible cooldown
+        if (attackCooldown < lowestCooldownPossible)
+            attackCooldown = lowestCooldownPossible;
+    }
     protected virtual void Die()
     {
         Debug.Log(gameObject.name + " died!");
@@ -56,5 +66,13 @@ public abstract class Combatant : MonoBehaviour
         return isCurrentlyDead;
     }
 
-    protected abstract void Update();
+    public virtual bool IsAttacking()
+    {
+        return isAttacking;
+    }
+
+    public virtual float GetAttackCooldown()
+    {
+        return attackCooldown;
+    }
 }

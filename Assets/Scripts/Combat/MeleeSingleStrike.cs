@@ -7,24 +7,19 @@ public class MeleeSingleStrike : Combatant
     [Header("Attack Specifics")]
     public Transform attackPointRadius;
     [SerializeField] public float attackRange = 0.5f;
-    [SerializeField] protected float attackCooldown = 2f;
     [SerializeField] protected float timeSinceLastAttackAnimation = 0f;
-    [SerializeField] protected float lowestCooldownPossible = 2f;
-    [SerializeField] bool isAttacking = false;
 
     [Header("Deal damage to enemy")]
     [SerializeField] float damageDealTimerStart = 0f;
     [SerializeField] float damageDealTimerStop = 1f;
-    [SerializeField] bool enemyDetected = false;
+    [SerializeField] bool isEnemyDetected = false;
 
-    public void Start()
+    protected override void Start()
     {
+        base.Start();
+
         //ignores collision with specified non collidable layers
         Physics2D.IgnoreLayerCollision(gameObject.layer, LayerMask.NameToLayer("Player"));
-
-        //attack cd can't be lower than lowest possible cooldown
-        if (attackCooldown < lowestCooldownPossible)
-            attackCooldown = lowestCooldownPossible;
 
         //sets samurai stats
         currentHealth = maxHealth;
@@ -47,7 +42,7 @@ public class MeleeSingleStrike : Combatant
             EnemyDetection();
 
             //if we detected at least 1 enemy we launch an attack animation as long as the attack is not on cooldown
-            if (!isAttacking && enemyDetected && (timeSinceLastAttackAnimation >= attackCooldown))
+            if (!isAttacking && isEnemyDetected && (timeSinceLastAttackAnimation >= attackCooldown))
             {
                 isAttacking = true;
                 //attack animation
@@ -65,27 +60,21 @@ public class MeleeSingleStrike : Combatant
         }
     }
 
-    protected void EnemyDetection()
+    private void EnemyDetection()
     {
         //checks detection radius for enemies
         Collider2D[] detectedEnemies = Physics2D.OverlapCircleAll(attackPointRadius.position, attackRange, enemy);
 
         //checks if any alive enemies are in the detection zone
-        bool foundAliveEnemy = false;
+        isEnemyDetected = false;
         foreach (Collider2D enemy in detectedEnemies)
         {
             if (!enemy.GetComponent<Combatant>().IsDead())
             {
-                foundAliveEnemy = true;
+                isEnemyDetected = true;
                 break;
             }
         }
-
-        //sets if we detected an enemy
-        if (foundAliveEnemy)
-            enemyDetected = true;
-        else
-            enemyDetected = false;
     }
 
     protected override void Attack()

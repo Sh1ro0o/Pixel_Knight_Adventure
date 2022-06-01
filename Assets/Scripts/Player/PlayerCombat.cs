@@ -8,11 +8,12 @@ public class PlayerCombat : Combatant
 
     //combat variables
     public float attackRange = 0.5f;
-    public float attackCooldown = 1f;
     float timeSinceLastAttack = 0f;
 
-    private void Start()
+    protected override void Start()
     {
+        base.Start();
+
         currentHealth = maxHealth;
         currentDamage = maxDamage;
         timeSinceLastAttack = attackCooldown;
@@ -22,11 +23,13 @@ public class PlayerCombat : Combatant
     protected override void Update()
     {
         timeSinceLastAttack += Time.deltaTime;
-        if(timeSinceLastAttack >= attackCooldown && Input.GetButtonDown("Attack"))
+        if (timeSinceLastAttack >= attackCooldown && Input.GetButtonDown("Attack"))
         {
             Attack();
             timeSinceLastAttack = 0f;
         }
+        else
+            isAttacking = false;
     }
 
     protected override void Attack()
@@ -35,6 +38,7 @@ public class PlayerCombat : Combatant
         {
             //attack animation
             animator.SetTrigger("Attack");
+            isAttacking = true;
 
             //enemies detection
             Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPointRadius.position, attackRange, enemy);
