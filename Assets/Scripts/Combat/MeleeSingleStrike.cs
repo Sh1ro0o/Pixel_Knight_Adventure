@@ -18,7 +18,7 @@ public class MeleeSingleStrike : Combatant
     {
         base.Start();
 
-        //ignores collision with specified non collidable layers
+        //ignores collision with specified layers
         Physics2D.IgnoreLayerCollision(gameObject.layer, LayerMask.NameToLayer("Player"));
 
         //sets samurai stats

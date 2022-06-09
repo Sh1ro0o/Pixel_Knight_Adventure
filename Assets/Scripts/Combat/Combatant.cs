@@ -31,7 +31,7 @@ public abstract class Combatant : MonoBehaviour
         if (attackCooldown < lowestCooldownPossible)
             attackCooldown = lowestCooldownPossible;
     }
-    protected virtual void Die()
+    public virtual void Die()
     {
         Debug.Log(gameObject.name + " died!");
 
@@ -41,6 +41,9 @@ public abstract class Combatant : MonoBehaviour
 
         //Die animation
         animator.SetBool("isDead", true);
+
+        //so we can call Die function to just kill the enemy and remove its hp
+        currentHealth = 0;
 
         isCurrentlyDead = true;
     }

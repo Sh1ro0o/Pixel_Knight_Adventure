@@ -29,6 +29,7 @@ public class DefaultEnemyMovement : MonoBehaviour
     private void Start()
     {
         combatant = GetComponent<Combatant>();
+        //we reset the cooldown so the enemy moves as soon as it spawns
         timeSinceLastAttack = combatant.GetAttackCooldown();
     }
 
