@@ -54,9 +54,6 @@ public abstract class Combatant : MonoBehaviour
         {
             currentHealth -= damage;
 
-            //play hurt animation
-            animator.SetTrigger("isDamaged");
-
             //checks if dead
             if (currentHealth <= 0)
             {

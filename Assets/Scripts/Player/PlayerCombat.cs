@@ -10,6 +10,13 @@ public class PlayerCombat : Combatant
     public float attackRange = 0.5f;
     float timeSinceLastAttack = 0f;
 
+    //invulnerable
+    [Header("invulnerable")]
+    [SerializeField] SpriteRenderer spriteRenderer;
+    [SerializeField] float invulnerableDuration = 1f;
+    float timeSinceLastTookDamage = 0f;
+    bool isInvulnurable = false;
+
     protected override void Start()
     {
         base.Start();
@@ -17,6 +24,7 @@ public class PlayerCombat : Combatant
         currentHealth = maxHealth;
         currentDamage = maxDamage;
         timeSinceLastAttack = attackCooldown;
+        timeSinceLastTookDamage = invulnerableDuration;
     }
 
     // Update is called once per frame
@@ -30,6 +38,16 @@ public class PlayerCombat : Combatant
         }
         else
             isAttacking = false;
+
+        //invulnerable mechanics
+        timeSinceLastTookDamage += Time.deltaTime;
+        if (timeSinceLastTookDamage > invulnerableDuration && spriteRenderer.color == Color.red)
+        {
+            isInvulnurable = false;
+            spriteRenderer.color = Color.white;
+        }
+
+        Debug.Log("is invulnerable: " + isInvulnurable);
     }
 
     protected override void Attack()
@@ -53,6 +71,19 @@ public class PlayerCombat : Combatant
                     enemy.GetComponent<Combatant>().TakeDamage(currentDamage);
                 }
             }
+        }
+    }
+
+    public override void TakeDamage(int damage)
+    {
+        if (isInvulnurable)
+            base.TakeDamage(0);
+        else
+        {
+            base.TakeDamage(damage);
+            timeSinceLastTookDamage = 0f;
+            spriteRenderer.color = Color.red;
+            isInvulnurable = true;
         }
     }
 

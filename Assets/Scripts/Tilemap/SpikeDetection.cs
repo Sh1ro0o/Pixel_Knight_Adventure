@@ -4,18 +4,6 @@ using UnityEngine;
 
 public class SpikeDetection : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
-
     private void OnCollisionStay2D(Collision2D collision)
     {
         if(collision.gameObject.layer == 10 || collision.gameObject.layer == 3)
