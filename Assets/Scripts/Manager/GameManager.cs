@@ -41,6 +41,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
+
     public enum GameState
     {
         MainMenu,
@@ -48,4 +49,5 @@ public class GameManager : MonoBehaviour
         Victory,
         Defeat
     }
+
 }
