@@ -92,6 +92,7 @@ public class MeleeSingleStrike : Combatant
                 Debug.Log(enemy.name + " has taken " + currentDamage);
             }
         }
+        AudioManager.audioManager.PlaySound(AudioManager.SoundSystem.Sword_hit);
         isAttacking = false;
 
     }

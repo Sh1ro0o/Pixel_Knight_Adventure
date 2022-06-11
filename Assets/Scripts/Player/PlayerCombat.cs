@@ -56,6 +56,7 @@ public class PlayerCombat : Combatant
         {
             //attack animation
             animator.SetTrigger("Attack");
+            AudioManager.audioManager.PlaySound(AudioManager.SoundSystem.Sword_swing);
             isAttacking = true;
 
             //enemies detection
