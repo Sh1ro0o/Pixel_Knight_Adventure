@@ -245,7 +245,7 @@ MonoBehaviour:
   m_MinValue: 0.0001
   m_MaxValue: 1
   m_WholeNumbers: 0
-  m_Value: 1
+  m_Value: 0.25
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
@@ -719,42 +719,48 @@ MonoBehaviour:
     clipName: main_menu
     isLoop: 1
     playOnAwake: 1
-    volume: 0.502
   - audioType: 0
     source: {fileID: 0}
-    clip: {fileID: 8300000, guid: dedee5e8e089d6b4e8c3fef5e65e8a1c, type: 3}
+    clip: {fileID: 8300000, guid: e7dc2e2bdc5f1e14c957a942e91a5303, type: 3}
     clipName: jump
     isLoop: 0
     playOnAwake: 0
-    volume: 0.502
   - audioType: 0
     source: {fileID: 0}
-    clip: {fileID: 8300000, guid: 70b1b1d1858650a45a264232b7fa1759, type: 3}
+    clip: {fileID: 8300000, guid: 5098c3737521f4a4189df4507fc22e77, type: 3}
     clipName: grunt
     isLoop: 0
     playOnAwake: 0
-    volume: 0.5
   - audioType: 0
     source: {fileID: 0}
-    clip: {fileID: 8300000, guid: b287d9902e2f043468293a46a64e7191, type: 3}
+    clip: {fileID: 8300000, guid: 404df0a1ddcc662498bb56fc42ebaca5, type: 3}
     clipName: die
     isLoop: 0
     playOnAwake: 0
-    volume: 0.5
   - audioType: 0
     source: {fileID: 0}
-    clip: {fileID: 8300000, guid: e38f7c71a36ba5a43a584d811dd79e98, type: 3}
-    clipName: sword_hit
+    clip: {fileID: 8300000, guid: 77cc51531b9fc144e87250f4f6d8f0df, type: 3}
+    clipName: player_swing
     isLoop: 0
     playOnAwake: 0
-    volume: 0.5
   - audioType: 0
     source: {fileID: 0}
-    clip: {fileID: 8300000, guid: 860df56d3372b794094063df7a59f19c, type: 3}
-    clipName: sword_swing
+    clip: {fileID: 8300000, guid: 15fd32e9e0b326e42b3eb79c3681f7d4, type: 3}
+    clipName: player_hit
     isLoop: 0
     playOnAwake: 0
-    volume: 0.5
+  - audioType: 0
+    source: {fileID: 0}
+    clip: {fileID: 8300000, guid: 86109738f431a8e439dd0e28dc539034, type: 3}
+    clipName: player_running
+    isLoop: 1
+    playOnAwake: 0
+  - audioType: 0
+    source: {fileID: 0}
+    clip: {fileID: 8300000, guid: c369ef353958df3419532511e3ae72b6, type: 3}
+    clipName: coin_pick_up
+    isLoop: 0
+    playOnAwake: 0
 --- !u!4 &645790143
 Transform:
   m_ObjectHideFlags: 0
@@ -850,7 +856,7 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMax: {x: 0.24992499, y: 1}
   m_AnchoredPosition: {x: 7.875839, y: -0.000009536743}
   m_SizeDelta: {x: 10, y: 0}
   m_Pivot: {x: 1.2875723, y: 0.5}
@@ -1203,7 +1209,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 15.8, y: 5.1594}
+  m_AnchoredPosition: {x: -39.4, y: -48.3}
   m_SizeDelta: {x: 266.7718, y: 310.6295}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1421084079
@@ -2341,7 +2347,7 @@ MonoBehaviour:
   m_FillRect: {fileID: 1784958665}
   m_HandleRect: {fileID: 1057338788}
   m_Direction: 0
-  m_MinValue: 0
+  m_MinValue: 0.0001
   m_MaxValue: 1
   m_WholeNumbers: 0
   m_Value: 1
@@ -2759,8 +2765,8 @@ RectTransform:
   m_Father: {fileID: 164047764}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 1, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMin: {x: 0.24992499, y: 0}
+  m_AnchorMax: {x: 0.24992499, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}

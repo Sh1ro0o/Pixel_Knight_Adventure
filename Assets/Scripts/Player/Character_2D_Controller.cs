@@ -59,7 +59,7 @@ public class Character_2D_Controller : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
-        if(!combatant.IsDead())
+        if (!combatant.IsDead())
         {
             //user movement input
             horizontalMovement = Input.GetAxisRaw("Horizontal");
@@ -116,7 +116,7 @@ public class Character_2D_Controller : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if(!combatant.IsDead())
+        if (!combatant.IsDead())
         {
             //ALTERNATIVE: transform.position += new Vector3(horizontalMovement, 0, 0) * Time.fixedDeltaTime * movementSpeed;
             //move when crouched

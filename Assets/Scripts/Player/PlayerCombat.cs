@@ -47,7 +47,7 @@ public class PlayerCombat : Combatant
             spriteRenderer.color = Color.white;
         }
 
-        Debug.Log("is invulnerable: " + isInvulnurable);
+        //Debug.Log("is invulnerable: " + isInvulnurable);
     }
 
     protected override void Attack()
@@ -56,7 +56,6 @@ public class PlayerCombat : Combatant
         {
             //attack animation
             animator.SetTrigger("Attack");
-            AudioManager.audioManager.PlaySound(AudioManager.SoundSystem.Sword_swing);
             isAttacking = true;
 
             //enemies detection
@@ -72,6 +71,12 @@ public class PlayerCombat : Combatant
                     enemy.GetComponent<Combatant>().TakeDamage(currentDamage);
                 }
             }
+
+            //play hit SFX if at least 1 enemy was hit otherwise just play the sword swing SFX
+            if(hitEnemies.Length > 0)
+                AudioManager.audioManager.PlaySound(AudioManager.SoundSystem.Player_hit);
+            else
+                AudioManager.audioManager.PlaySound(AudioManager.SoundSystem.Player_swing);
         }
     }
 

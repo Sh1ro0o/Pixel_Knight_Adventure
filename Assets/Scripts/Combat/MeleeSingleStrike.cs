@@ -12,7 +12,11 @@ public class MeleeSingleStrike : Combatant
     [Header("Deal damage to enemy")]
     [SerializeField] float damageDealTimerStart = 0f;
     [SerializeField] float damageDealTimerStop = 1f;
-    [SerializeField] bool isEnemyDetected = false;
+    bool isEnemyDetected = false;
+
+    [Header("Audio")]
+    [SerializeField] AudioSource attackHitSound;
+    [SerializeField] AudioSource attackSwingSound;
 
     protected override void Start()
     {
@@ -20,6 +24,7 @@ public class MeleeSingleStrike : Combatant
 
         //ignores collision with specified layers
         Physics2D.IgnoreLayerCollision(gameObject.layer, LayerMask.NameToLayer("Player"));
+        Physics2D.IgnoreLayerCollision(gameObject.layer, LayerMask.NameToLayer("Enemy"));
 
         //sets samurai stats
         currentHealth = maxHealth;
@@ -92,9 +97,13 @@ public class MeleeSingleStrike : Combatant
                 Debug.Log(enemy.name + " has taken " + currentDamage);
             }
         }
-        AudioManager.audioManager.PlaySound(AudioManager.SoundSystem.Sword_hit);
-        isAttacking = false;
+        //if an enemy was detected to take damage we play the hit sound
+        if (detectedEnemies.Length > 0)
+            attackHitSound.Play();
+        else //we play the miss sound
+            attackSwingSound.Play();
 
+        isAttacking = false;
     }
 
     //draws our sphere for detecting

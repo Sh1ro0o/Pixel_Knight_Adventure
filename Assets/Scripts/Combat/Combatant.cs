@@ -37,7 +37,7 @@ public abstract class Combatant : MonoBehaviour
 
         //stop animations from playing and play death animation
         animator.StopPlayback();
-        animator.Play(gameObject.name + "_death");
+        animator.Play("death");
 
         //Die animation
         animator.SetBool("isDead", true);

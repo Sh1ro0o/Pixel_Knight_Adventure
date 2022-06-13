@@ -23,7 +23,7 @@ public class AudioManager : MonoBehaviour
             sound.source.clip = sound.clip;
             sound.source.loop = sound.isLoop;
             sound.source.playOnAwake = sound.playOnAwake;
-            sound.source.volume = sound.volume;
+            //sound.source.volume = sound.volume;
 
             //we set the AudioSources into correct MixerGroups
             switch (sound.audioType)
@@ -67,11 +67,17 @@ public class AudioManager : MonoBehaviour
             case SoundSystem.Die:
                 PlayClipByIndex((int)SoundSystem.Die);
                 break;
-            case SoundSystem.Sword_hit:
-                PlayClipByIndex((int)SoundSystem.Sword_hit);
+            case SoundSystem.Player_swing:
+                PlayClipByIndex((int)SoundSystem.Player_swing);
                 break;
-            case SoundSystem.Sword_swing:
-                PlayClipByIndex((int)SoundSystem.Sword_swing);
+            case SoundSystem.Player_hit:
+                PlayClipByIndex((int)SoundSystem.Player_hit);
+                break;
+            case SoundSystem.Player_running:
+                PlayClipByIndex((int)SoundSystem.Player_running);
+                break;
+            case SoundSystem.Coin_pick_up:
+                PlayClipByIndex((int)SoundSystem.Coin_pick_up);
                 break;
             default:
                 Debug.Log("Sound to play not found!");
@@ -95,11 +101,17 @@ public class AudioManager : MonoBehaviour
             case SoundSystem.Die:
                 StopClipByIndex((int)SoundSystem.Die);
                 break;
-            case SoundSystem.Sword_hit:
-                StopClipByIndex((int)SoundSystem.Sword_hit);
+            case SoundSystem.Player_swing:
+                StopClipByIndex((int)SoundSystem.Player_swing);
                 break;
-            case SoundSystem.Sword_swing:
-                StopClipByIndex((int)SoundSystem.Sword_swing);
+            case SoundSystem.Player_hit:
+                StopClipByIndex((int)SoundSystem.Player_hit);
+                break;
+            case SoundSystem.Player_running:
+                StopClipByIndex((int)SoundSystem.Player_running);
+                break;
+            case SoundSystem.Coin_pick_up:
+                StopClipByIndex((int)SoundSystem.Coin_pick_up);
                 break;
             default:
                 break;
@@ -128,7 +140,9 @@ public class AudioManager : MonoBehaviour
         Jump,
         Grunt,
         Die,
-        Sword_hit,
-        Sword_swing
+        Player_swing,
+        Player_hit,
+        Player_running,
+        Coin_pick_up
     }
 }

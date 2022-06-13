@@ -4,9 +4,14 @@ using UnityEngine;
 
 public class AudioOptionsManager : MonoBehaviour
 {
-    //we make set private so we can't change their values outside of this class because they would be able to otherwise because they are static
-    public static float musicVolume { get; private set; }
-    public static float soundEffectsVolume { get; private set; }
+    public static float musicVolume = 0f;
+    public static float soundEffectsVolume = 0f;
+
+    private void Start()
+    {
+        //default music value is 25%
+        OnMusicSliderValueChange(0.25f);
+    }
 
 
     //sliders have an on value change event which pass you a float value to your function so it's required to accept a float parameter

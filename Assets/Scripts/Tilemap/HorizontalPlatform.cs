@@ -7,7 +7,7 @@ public class HorizontalPlatform : MonoBehaviour
 {
     [SerializeField] PlatformEffector2D platformEffector;
     bool isDownButtonPressed = false;
-    bool DownButtonReleasedFlag = false;
+
     CustomLayerCollisionCheck customLayerColisionCheck;
 
     private void Start()
@@ -26,7 +26,7 @@ public class HorizontalPlatform : MonoBehaviour
 
         if(Input.GetButtonUp("Down"))
         {
-            DownButtonReleasedFlag = true;
+            isDownButtonPressed = false;
         }
     }
 
@@ -36,14 +36,12 @@ public class HorizontalPlatform : MonoBehaviour
         //for this code to work the Player layer must be Layer 3 (number 8 bitwise)
         if(isDownButtonPressed)
         {
-            isDownButtonPressed = false;
             //Debug.Log("Before: " + Convert.ToString(platformEffector.colliderMask, 2).PadLeft(32, '0'));
             platformEffector.colliderMask = platformEffector.colliderMask & (2147483643-8);
             //Debug.Log("After: " + Convert.ToString(platformEffector.colliderMask, 2).PadLeft(32, '0'));
         }
-        if(DownButtonReleasedFlag && !customLayerColisionCheck.isPlayerPlatformCollision)
+        if(!isDownButtonPressed && !customLayerColisionCheck.isPlayerPlatformCollision)
         {
-            DownButtonReleasedFlag = false; 
             platformEffector.colliderMask = platformEffector.colliderMask | 8;
         }
     }

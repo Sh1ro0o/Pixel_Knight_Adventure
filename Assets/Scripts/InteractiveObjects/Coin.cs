@@ -8,8 +8,9 @@ public class Coin : MonoBehaviour
     {
         if(collision.gameObject.name == "Player")
         {
-            
-            Debug.Log("Picked up coin!");
+
+            GameManager.gameManager.coins++;
+            AudioManager.audioManager.PlaySound(AudioManager.SoundSystem.Coin_pick_up);
             Destroy(gameObject);
         }
     }
