@@ -46,9 +46,10 @@ public class Character_2D_Controller : MonoBehaviour
 
     //WALL-SLIDING
     bool isWallSliding = false;
-    bool isJumpingOffWall = false;
 
     Combatant combatant;
+
+    bool isPlayingRunSound = false;
 
     private void Start()
     {
@@ -99,6 +100,22 @@ public class Character_2D_Controller : MonoBehaviour
             if (isGrounded)
             {
                 jumpsLeft = maxJumps;
+
+                if (Mathf.Abs(horizontalMovement) > 0 && !isPlayingRunSound)
+                {
+                    isPlayingRunSound = true;
+                    AudioManager.audioManager.PlaySound(AudioManager.SoundSystem.Player_running);
+                }
+                else if (horizontalMovement == 0 && isPlayingRunSound)
+                {
+                    isPlayingRunSound = false;
+                    AudioManager.audioManager.StopSound(AudioManager.SoundSystem.Player_running);
+                }
+            }
+            else if (isPlayingRunSound)
+            {
+                isPlayingRunSound = false;
+                AudioManager.audioManager.StopSound(AudioManager.SoundSystem.Player_running);
             }
 
             //crouch button
@@ -111,6 +128,11 @@ public class Character_2D_Controller : MonoBehaviour
             {
                 crouchFlag = false;
             }
+        }
+        else if (isPlayingRunSound)
+        {
+            isPlayingRunSound = false;
+            AudioManager.audioManager.StopSound(AudioManager.SoundSystem.Player_running);
         }
     }
 
@@ -194,11 +216,7 @@ public class Character_2D_Controller : MonoBehaviour
                 isJumping = false;
 
                 //sets jumps to 1 because you can only single jump from a wall
-                if (!isJumpingOffWall)
-                {
-                    isJumpingOffWall = true;
-                    jumpsLeft = 1;
-                }
+                jumpsLeft = 1;
             }
             else
             {
@@ -229,7 +247,6 @@ public class Character_2D_Controller : MonoBehaviour
             {
                 //we are grounded
                 isGrounded = true;
-                isJumpingOffWall = false;
                 //Debug.Log("We are grounded!");
             }
         }

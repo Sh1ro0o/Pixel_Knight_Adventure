@@ -16,7 +16,7 @@ TagManager:
   - FloorsAndCeiling
   - Background
   - Enemy
-  - Spikes
+  - Traps
   - Coin
   - 
   - 
@@ -59,6 +59,6 @@ TagManager:
   - name: Player
     uniqueID: 1877444723
     locked: 0
-  - name: Spikes
+  - name: Traps
     uniqueID: 193288213
     locked: 0
