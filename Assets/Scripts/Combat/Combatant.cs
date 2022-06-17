@@ -48,6 +48,14 @@ public abstract class Combatant : MonoBehaviour
         isCurrentlyDead = true;
     }
 
+    public virtual void Revive()
+    {
+        animator.SetBool("isDead", false);
+
+        currentHealth = maxHealth;
+        isCurrentlyDead = false;
+    }
+
     public virtual void TakeDamage(int damage)
     {
         if (!isCurrentlyDead)

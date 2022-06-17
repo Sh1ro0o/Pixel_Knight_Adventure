@@ -12,7 +12,6 @@ public class Axe_trap : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(axeTransform.rotation.z);
         rotZ += Time.deltaTime * rotationSpeed;
 
         axeTransform.rotation = Quaternion.Euler(0, 0, rotZ);

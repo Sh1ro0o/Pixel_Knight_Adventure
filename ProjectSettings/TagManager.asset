@@ -18,7 +18,7 @@ TagManager:
   - Enemy
   - Traps
   - Coin
-  - 
+  - Checkpoint
   - 
   - 
   - 
@@ -61,4 +61,7 @@ TagManager:
     locked: 0
   - name: Traps
     uniqueID: 193288213
+    locked: 0
+  - name: Checkpoint
+    uniqueID: 3678434079
     locked: 0
