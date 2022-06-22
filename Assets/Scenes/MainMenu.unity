@@ -245,11 +245,11 @@ MonoBehaviour:
   m_MinValue: 0.0001
   m_MaxValue: 1
   m_WholeNumbers: 0
-  m_Value: 0.25
+  m_Value: 1
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 645790144}
+      - m_Target: {fileID: 342353764}
         m_TargetAssemblyTypeName: AudioOptionsManager, Assembly-CSharp
         m_MethodName: OnMusicSliderValueChange
         m_Mode: 0
@@ -270,6 +270,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 342353763}
+  - component: {fileID: 342353764}
   m_Layer: 5
   m_Name: OptionsMenu
   m_TagString: Untagged
@@ -302,6 +303,18 @@ RectTransform:
   m_AnchoredPosition: {x: 15.8, y: 5.1594}
   m_SizeDelta: {x: 266.7718, y: 310.6295}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &342353764
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 342353762}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9c1a8acc7c0ff4d4d95c07041ed78009, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &456202792
 GameObject:
   m_ObjectHideFlags: 0
@@ -690,7 +703,6 @@ GameObject:
   m_Component:
   - component: {fileID: 645790143}
   - component: {fileID: 645790142}
-  - component: {fileID: 645790144}
   m_Layer: 0
   m_Name: AudioManager
   m_TagString: Untagged
@@ -761,6 +773,8 @@ MonoBehaviour:
     clipName: coin_pick_up
     isLoop: 0
     playOnAwake: 0
+  musicSlider: {fileID: 262883852}
+  sfxSlider: {fileID: 1697887252}
 --- !u!4 &645790143
 Transform:
   m_ObjectHideFlags: 0
@@ -775,18 +789,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &645790144
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 645790141}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9c1a8acc7c0ff4d4d95c07041ed78009, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &837066639
 GameObject:
   m_ObjectHideFlags: 0
@@ -856,7 +858,7 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0.24992499, y: 1}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 7.875839, y: -0.000009536743}
   m_SizeDelta: {x: 10, y: 0}
   m_Pivot: {x: 1.2875723, y: 0.5}
@@ -2354,7 +2356,7 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 645790144}
+      - m_Target: {fileID: 342353764}
         m_TargetAssemblyTypeName: AudioOptionsManager, Assembly-CSharp
         m_MethodName: OnSoundEffectsSliderValueChange
         m_Mode: 0
@@ -2765,8 +2767,8 @@ RectTransform:
   m_Father: {fileID: 164047764}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.24992499, y: 0}
-  m_AnchorMax: {x: 0.24992499, y: 1}
+  m_AnchorMin: {x: 1, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -2838,7 +2840,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   coins: 0
-  state: 0
 --- !u!4 &2025820128
 Transform:
   m_ObjectHideFlags: 0

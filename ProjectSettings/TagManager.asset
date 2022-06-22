@@ -41,6 +41,9 @@ TagManager:
   - name: Background
     uniqueID: 50215115
     locked: 0
+  - name: Traps
+    uniqueID: 193288213
+    locked: 0
   - name: Default
     uniqueID: 0
     locked: 0
@@ -59,9 +62,9 @@ TagManager:
   - name: Player
     uniqueID: 1877444723
     locked: 0
-  - name: Traps
-    uniqueID: 193288213
-    locked: 0
   - name: Checkpoint
     uniqueID: 3678434079
+    locked: 0
+  - name: UI
+    uniqueID: 4288957097
     locked: 0

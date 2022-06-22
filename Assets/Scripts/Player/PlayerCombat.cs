@@ -52,7 +52,8 @@ public class PlayerCombat : Combatant
 
     protected override void Attack()
     {
-        if (!isCurrentlyDead)
+        //if we aren't dead and if the game isn't paused
+        if (!isCurrentlyDead && Time.timeScale != 0)
         {
             //attack animation
             animator.SetTrigger("Attack");

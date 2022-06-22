@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Audio;
+using UnityEngine.UI;
 
 public class AudioManager : MonoBehaviour
 {
@@ -12,10 +13,21 @@ public class AudioManager : MonoBehaviour
     [SerializeField] private AudioMixerGroup soundEffectsMixerGroup;
     [SerializeField] private Sound[] sounds;
 
+    [SerializeField] private Slider musicSlider;
+    [SerializeField] private Slider sfxSlider;
 
     private void Awake()
     {
         MakeSingleton();
+
+        // set the volume and slider from PlyerPrefabs
+        //changing these values will also causee the onValueChange functions to be triggered in AudioOptionsManager.cs
+        musicSlider.value = PlayerPrefs.GetFloat("MusicVolume", 1f);
+        sfxSlider.value = PlayerPrefs.GetFloat("SfxVolume", 1f);
+        //Debug.Log("reading values from playerprefs about volume!");
+        Debug.Log("onawake");
+
+        Debug.Log("SFX slider value: " + sfxSlider.value);
 
         foreach (Sound sound in sounds)
         { 
@@ -128,10 +140,20 @@ public class AudioManager : MonoBehaviour
         sounds[index].source.Stop();
     }
 
-    public void UpdateMixerVolume()
+    public void UpdateMusicVolume()
     {
         musicMixerGroup.audioMixer.SetFloat("Music Volume", Mathf.Log10(AudioOptionsManager.musicVolume) * 20);
+        //Debug.Log("Before saving Music volume: " + PlayerPrefs.GetFloat("MusicVolume"));
+        PlayerPrefs.SetFloat("MusicVolume", AudioOptionsManager.musicVolume);
+        //Debug.Log("After saving Music volume: " + PlayerPrefs.GetFloat("MusicVolume"));
+    }
+
+    public void UpdateSfxVolume()
+    {
         soundEffectsMixerGroup.audioMixer.SetFloat("Sound Effects Volume", Mathf.Log10(AudioOptionsManager.soundEffectsVolume) * 20);
+        Debug.Log("Before saving SFX volume: " + PlayerPrefs.GetFloat("SfxVolume"));
+        PlayerPrefs.SetFloat("SfxVolume", AudioOptionsManager.soundEffectsVolume);
+        Debug.Log("After saving SFX volume: " + PlayerPrefs.GetFloat("SfxVolume"));
     }
 
     public enum SoundSystem
