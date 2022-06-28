@@ -150,6 +150,29 @@ public class UpgradesMenu : MonoBehaviour
         Debug.Log("Player maxhealth increased to: " + PlayerPrefs.GetInt("PlayerHealth"));
     }
 
+    public void AttackUpgradeButton()
+    {
+        //take coins and update text
+        GameManager.gameManager.RemoveCoins((int)attackUpgradeLevelCost);
+        yourCoinsAmmountText.text = GameManager.gameManager.totalCoins + "x";
+
+        //upgrade attack
+        if (upgradeLevelAttack < 2)
+            upgradeLevelAttack++; //increase level
+        else
+            upgradeLevelAttack = -1; //set to max level
+
+        //display new coins ammount to upgrade and new attack ammount
+        upgradeAttackRequirementsUpdate();
+        currentAttackText.text = playerAttack + "";
+
+        //save player max attack upgrade
+        PlayerPrefs.SetInt("UpgradeLevelAttack", upgradeLevelAttack);
+        PlayerPrefs.SetInt("PlayerAttack", playerAttack);
+
+        Debug.Log("Player maxDamage increased to: " + PlayerPrefs.GetInt("PlayerAttack"));
+    }
+
     void ResetStats()
     {
         PlayerPrefs.SetInt("UpgradeLevelHealth", 0);
