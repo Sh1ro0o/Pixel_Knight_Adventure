@@ -94,6 +94,16 @@ public class PlayerCombat : Combatant
         }
     }
 
+    public void IncreaseHealth(int ammount)
+    {
+        maxHealth += ammount;
+    }
+
+    public void IncreaseDamage(int ammount)
+    {
+        maxDamage += ammount;
+    }
+
     //draws our sphere for detecting
     private void OnDrawGizmosSelected()
     {

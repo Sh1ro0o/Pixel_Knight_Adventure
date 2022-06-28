@@ -7,6 +7,13 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager gameManager = null;
     public int coins;
+    public int totalCoins;
+
+    private void Start()
+    {
+        //gets the ammount of coins at gamestart
+        totalCoins = PlayerPrefs.GetInt("Coins", 0);
+    }
 
     void Awake()
     {
@@ -31,18 +38,37 @@ public class GameManager : MonoBehaviour
                 SceneManager.LoadScene("MainMenu");
                 break;
             case Scenes.Level1:
+                coins = 0;
                 SceneManager.LoadScene("Level1");
                 break;
             case Scenes.Level2:
+                coins = 0;
                 SceneManager.LoadScene("Level2");
                 break;
             case Scenes.Level3:
+                coins = 0;
                 SceneManager.LoadScene("Level3");
                 break;
             default:
                 Debug.Log("Scene doesn't exist or could not be found!");
                 break;
         }
+    }
+    public void RemoveCoins(int ammount)
+    {
+        totalCoins -= ammount;
+        PlayerPrefs.SetInt("Coins", totalCoins);
+    }
+
+    public void FinishedLevel()
+    {
+        //saves coins
+        totalCoins += coins;
+        PlayerPrefs.SetInt("Coins", totalCoins);
+        Debug.Log("Total coins: " + totalCoins);
+
+        //loads main menu
+        LoadScene(Scenes.MainMenu);
     }
 }
 

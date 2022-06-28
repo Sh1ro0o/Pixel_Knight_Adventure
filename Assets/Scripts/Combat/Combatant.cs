@@ -83,4 +83,14 @@ public abstract class Combatant : MonoBehaviour
     {
         return attackCooldown;
     }
+
+    public virtual int getMaxDamage()
+    {
+        return maxDamage;
+    }
+
+    public virtual int getMaxHealth()
+    {
+        return maxHealth;
+    }
 }
