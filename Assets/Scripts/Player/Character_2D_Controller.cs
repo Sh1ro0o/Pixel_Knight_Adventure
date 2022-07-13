@@ -141,6 +141,7 @@ public class Character_2D_Controller : MonoBehaviour
         if (!combatant.IsDead())
         {
             //ALTERNATIVE: transform.position += new Vector3(horizontalMovement, 0, 0) * Time.fixedDeltaTime * movementSpeed;
+            //Mathf.Abs becasuse we flip the character we always move positive 
             //move when crouched
             if (isCrouching)
                 transform.Translate(Mathf.Abs(horizontalMovement * Time.fixedDeltaTime * crouchSpeed), 0, 0);
