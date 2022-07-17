@@ -93,4 +93,9 @@ public abstract class Combatant : MonoBehaviour
     {
         return maxHealth;
     }
+
+    public virtual int getCurrentHealth()
+    {
+        return currentHealth;
+    }
 }
