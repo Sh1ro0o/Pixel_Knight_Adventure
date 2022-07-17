@@ -16,7 +16,7 @@ public class PlayerRespawnSystem : MonoBehaviour
         if (gameObject.scene == SceneManager.GetSceneByName("Level1"))
             respawnPoint = new Vector3(-3, -1, 0);
         else if (gameObject.scene == SceneManager.GetSceneByName("Level3"))
-            respawnPoint = new Vector3(-16, -1, 0);
+            respawnPoint = new Vector3(-6.68f, -1.14f, 0);
         else
             respawnPoint = new Vector3(0, 0, 0);
     }

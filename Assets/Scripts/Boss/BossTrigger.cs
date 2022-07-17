@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Cinemachine;
 
 public class BossTrigger : MonoBehaviour
 {
@@ -9,16 +10,20 @@ public class BossTrigger : MonoBehaviour
 
     [SerializeField] GameObject bars;
 
+    [SerializeField] CinemachineVirtualCamera vcam;
+    CinemachineConfiner vcamConfiner;
+
     private void Start()
     {
         player = FindObjectOfType<PlayerCombat>();
+        vcamConfiner = vcam.GetComponent<CinemachineConfiner>();
     }
 
     private void Update()
     {
         if (player.IsDead())
         {
-            boss.isBossActivated = false;
+            boss.DeactivateBoss();
             bars.SetActive(false);
         }
     }
@@ -27,8 +32,9 @@ public class BossTrigger : MonoBehaviour
     {
         if (collision.gameObject.name == "Player")
         {
-            boss.isBossActivated = true;
+            boss.ActivateBoss();
             bars.SetActive(true);
+            vcamConfiner.enabled = true;
         }
     }
 }
