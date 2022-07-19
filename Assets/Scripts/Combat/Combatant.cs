@@ -42,9 +42,6 @@ public abstract class Combatant : MonoBehaviour
         //Die animation
         animator.SetBool("isDead", true);
 
-        //so we can call Die function to just kill the enemy and remove its hp
-        currentHealth = 0;
-
         isCurrentlyDead = true;
     }
 

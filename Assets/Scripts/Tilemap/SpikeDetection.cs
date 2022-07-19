@@ -8,7 +8,11 @@ public class SpikeDetection : MonoBehaviour
     {
         if(collision.gameObject.layer == 10 || collision.gameObject.layer == 3)
         {
-           collision.gameObject.GetComponent<Combatant>().Die();
+            Combatant combatant = collision.gameObject.GetComponent<Combatant>();
+            if(!combatant.IsDead())
+            {
+                combatant.TakeDamage(combatant.getCurrentHealth());
+            }
         }
     }
 }
