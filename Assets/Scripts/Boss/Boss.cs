@@ -22,6 +22,9 @@ public class Boss : Combatant
     [Header("Finish Flag")]
     [SerializeField] GameObject finishFlag;
 
+    [Header("VFX")]
+    [SerializeField] ParticleSystem bloodVFX;
+
     //boss throws 20 projectiles after that it stops attacking for 5 seconds (giving the player room to attack), when the boss is below half hp speed goes 2x faster
     //and has 40 projectiles
     protected override void Start()
@@ -109,6 +112,11 @@ public class Boss : Combatant
         //spawns projectile at position Vector3 and zero rotation (Quaternion.identity).
         Instantiate(projectile, projectileSpawnLocation, Quaternion.identity);
         projectilesLeft--;
+    }
+    public override void TakeDamage(int damage)
+    {
+        base.TakeDamage(damage);
+        bloodVFX.Play();
     }
 
     public int GetBossDamage()

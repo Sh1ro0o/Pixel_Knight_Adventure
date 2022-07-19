@@ -18,6 +18,9 @@ public class MeleeSingleStrike : Combatant
     [SerializeField] AudioSource attackHitSound;
     [SerializeField] AudioSource attackSwingSound;
 
+    [Header("VFX")]
+    [SerializeField] ParticleSystem bloodVFX;
+
     protected override void Start()
     {
         base.Start();
@@ -114,5 +117,11 @@ public class MeleeSingleStrike : Combatant
             return;
 
         Gizmos.DrawWireSphere(attackPointRadius.position, attackRange);
+    }
+
+    public override void TakeDamage(int damage)
+    {
+        base.TakeDamage(damage);
+        Instantiate(bloodVFX, transform.position, Quaternion.identity);
     }
 }

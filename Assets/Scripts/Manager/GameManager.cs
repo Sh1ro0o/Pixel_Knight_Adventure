@@ -49,6 +49,10 @@ public class GameManager : MonoBehaviour
                 coins = 0;
                 SceneManager.LoadScene("Level3");
                 break;
+            case Scenes.test:
+                coins = 0;
+                SceneManager.LoadScene("TestScene");
+                break;
             default:
                 Debug.Log("Scene doesn't exist or could not be found!");
                 break;
@@ -77,5 +81,6 @@ public enum Scenes
     MainMenu,
     Level1,
     Level2,
-    Level3
+    Level3,
+    test
 }
