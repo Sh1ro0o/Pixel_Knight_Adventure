@@ -17,6 +17,8 @@ public class PlayerCombat : Combatant
     float timeSinceLastTookDamage = 0f;
     bool isInvulnurable = false;
 
+    [Header("VFX")]
+    [SerializeField] ParticleSystem bloodVFX;
     protected override void Start()
     {
         base.Start();
@@ -90,6 +92,7 @@ public class PlayerCombat : Combatant
             base.TakeDamage(damage);
             timeSinceLastTookDamage = 0f;
             spriteRenderer.color = Color.red;
+            Instantiate(bloodVFX, transform.position, Quaternion.identity);
             isInvulnurable = true;
         }
     }
