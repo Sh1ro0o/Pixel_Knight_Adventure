@@ -34,6 +34,6 @@ public class HUD : MonoBehaviour
         slider.value = fillValue;
 
         //updates coins text
-        totalCoinsText.text = GameManager.gameManager.totalCoins.ToString();
+        totalCoinsText.text = GameManager.gameManager.totalCoins + "HELLO";
     }
 }

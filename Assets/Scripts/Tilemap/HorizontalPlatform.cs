@@ -6,6 +6,7 @@ using System;
 public class HorizontalPlatform : MonoBehaviour
 {
     [SerializeField] PlatformEffector2D platformEffector;
+    [SerializeField] PlayerCombat player;
     bool isDownButtonPressed = false;
 
     CustomLayerCollisionCheck customLayerColisionCheck;
@@ -34,7 +35,7 @@ public class HorizontalPlatform : MonoBehaviour
     {
         //use logical gates on the collidermask to remove the Player layer so on button press down it falls down and then we re-enable it when the button is released
         //for this code to work the Player layer must be Layer 3 (number 8 bitwise)
-        if(isDownButtonPressed)
+        if(isDownButtonPressed && !player.IsDead())
         {
             //Debug.Log("Before: " + Convert.ToString(platformEffector.colliderMask, 2).PadLeft(32, '0'));
             platformEffector.colliderMask = platformEffector.colliderMask & (2147483643-8);

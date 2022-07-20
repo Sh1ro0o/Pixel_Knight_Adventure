@@ -74,6 +74,12 @@ public class GameManager : MonoBehaviour
         //loads main menu
         LoadScene(Scenes.MainMenu);
     }
+
+    public void ReloadScene()
+    {
+        Scene scene = SceneManager.GetActiveScene();
+        SceneManager.LoadScene(scene.name);
+    }
 }
 
 public enum Scenes

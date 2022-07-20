@@ -2,10 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class PauseMenu : MonoBehaviour
 {
     [SerializeField] GameObject pauseMenu;
     [SerializeField] GameObject background;
+    [SerializeField] PlayerRespawnSystem playerRespawnSys;
 
     bool isDisplayingMenu = false;
 
@@ -24,7 +26,11 @@ public class PauseMenu : MonoBehaviour
 
     public void Restart()
     {
-        Debug.Log("Restart()");
+        HideMenu();
+        GameManager.gameManager.ReloadScene();
+
+        //resets coins acquired on that level
+        GameManager.gameManager.coins = 0;
     }
 
     public void BackToMainMenu()

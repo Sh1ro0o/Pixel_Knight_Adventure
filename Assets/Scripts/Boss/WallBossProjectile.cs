@@ -8,7 +8,7 @@ public class WallBossProjectile : MonoBehaviour
     Boss boss;
 
     //stats
-    [SerializeField] float projectileSpeed = 2.5f;
+    [SerializeField] float projectileSpeed = 5f;
 
     private void Start()
     {
@@ -18,7 +18,7 @@ public class WallBossProjectile : MonoBehaviour
     private void Update()
     {
         //deltaTime movement (is negative because it needs to move to the left)
-        transform.Translate(-(Time.fixedDeltaTime * projectileSpeed), 0, 0);
+        transform.Translate(-(Time.deltaTime * projectileSpeed), 0, 0);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
