@@ -21,6 +21,10 @@ public class MeleeSingleStrike : Combatant
     [Header("VFX")]
     [SerializeField] ParticleSystem bloodVFX;
 
+    [Header("Drop Object")]
+    [SerializeField] GameObject coin;
+    bool canDropCoin = true;
+
     protected override void Start()
     {
         base.Start();
@@ -66,6 +70,9 @@ public class MeleeSingleStrike : Combatant
                 Attack();
             }
         }
+
+        //drops coin when dead
+        DropCoinWhenDead();
     }
 
     private void EnemyDetection()
@@ -123,5 +130,16 @@ public class MeleeSingleStrike : Combatant
     {
         base.TakeDamage(damage);
         Instantiate(bloodVFX, transform.position, Quaternion.identity);
+    }
+
+    void DropCoinWhenDead()
+    {
+        if (IsDead() && canDropCoin)
+        {
+            Instantiate(coin, transform.position, Quaternion.identity);
+            canDropCoin = false;
+        }
+        else if (!IsDead())
+            canDropCoin = true;
     }
 }

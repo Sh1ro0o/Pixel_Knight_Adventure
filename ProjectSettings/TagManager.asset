@@ -68,6 +68,9 @@ TagManager:
   - name: Player
     uniqueID: 1877444723
     locked: 0
+  - name: Coin
+    uniqueID: 19696707
+    locked: 0
   - name: Projectile
     uniqueID: 1962927547
     locked: 0
