@@ -145072,6 +145072,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 109767948509328155, guid: ef287e91cf1144a43964d3aab203ecef, type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 7073467609497232339}
     - target: {fileID: 109767948509328158, guid: ef287e91cf1144a43964d3aab203ecef, type: 3}
       propertyPath: m_Name
       value: HUD
@@ -146961,6 +146965,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 5731607290858848003, guid: a393a88539186ce4fb95438a5d4b78fd, type: 3}
+      propertyPath: bloodVFX
+      value: 
+      objectReference: {fileID: 4059706985824833878, guid: e5a98f70dfef49641b7fdec5f941c733, type: 3}
     - target: {fileID: 5731607290901932073, guid: a393a88539186ce4fb95438a5d4b78fd, type: 3}
       propertyPath: m_RootOrder
       value: 0

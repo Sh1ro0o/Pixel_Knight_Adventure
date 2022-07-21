@@ -143,12 +143,14 @@ public class AudioManager : MonoBehaviour
     {
         musicMixerGroup.audioMixer.SetFloat("Music Volume", Mathf.Log10(AudioOptionsManager.musicVolume) * 20);
         PlayerPrefs.SetFloat("MusicVolume", AudioOptionsManager.musicVolume);
+        PlayerPrefs.Save();
     }
 
     public void UpdateSfxVolume()
     {
         soundEffectsMixerGroup.audioMixer.SetFloat("Sound Effects Volume", Mathf.Log10(AudioOptionsManager.soundEffectsVolume) * 20);
         PlayerPrefs.SetFloat("SfxVolume", AudioOptionsManager.soundEffectsVolume);
+        PlayerPrefs.Save();
     }
 
     public enum SoundSystem

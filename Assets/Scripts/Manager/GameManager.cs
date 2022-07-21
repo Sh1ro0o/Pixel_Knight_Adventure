@@ -71,6 +71,14 @@ public class GameManager : MonoBehaviour
         PlayerPrefs.SetInt("Coins", totalCoins);
         Debug.Log("Total coins: " + totalCoins);
 
+        //saves level complete
+        Scene scene = SceneManager.GetActiveScene();
+        if(scene.name == "Level1" || scene.name == "Level2")
+            PlayerPrefs.SetInt(scene.name, 0);
+
+        //save playerprefs
+        PlayerPrefs.Save();
+
         //loads main menu
         LoadScene(Scenes.MainMenu);
     }
