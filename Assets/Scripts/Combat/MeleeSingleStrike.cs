@@ -117,14 +117,14 @@ public class MeleeSingleStrike : Combatant
     }
 
     //draws our sphere for detecting
-    private void OnDrawGizmosSelected()
+    /*private void OnDrawGizmosSelected()
     {
         // if attack point hasen't been assigned yet
         if (attackPointRadius == null)
             return;
 
         Gizmos.DrawWireSphere(attackPointRadius.position, attackRange);
-    }
+    }*/
 
     public override void TakeDamage(int damage)
     {

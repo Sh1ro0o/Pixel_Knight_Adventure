@@ -104,7 +104,6 @@ public class DefaultEnemyMovement : MonoBehaviour
     //draws our sphere for detecting
     private void OnDrawGizmosSelected()
     {
-        Gizmos.DrawWireSphere(edgeCheck.position, edgeCheckRadius);
+        Gizmos.DrawWireSphere(wallCheck.position, wallCheckRadius);
     }
-
 }

@@ -265,7 +265,7 @@ MonoBehaviour:
   wallCheckRadius: 0.05
   wall:
     serializedVersion: 2
-    m_Bits: 64
+    m_Bits: 2112
 --- !u!82 &1576276319577683346
 AudioSource:
   m_ObjectHideFlags: 0
