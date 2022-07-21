@@ -15,15 +15,14 @@ public class AudioManager : MonoBehaviour
 
     [SerializeField] private Slider musicSlider;
     [SerializeField] private Slider sfxSlider;
-
     private void Awake()
     {
         MakeSingleton();
 
         // set the volume and slider from PlyerPrefabs
         //changing these values will also causee the onValueChange functions to be triggered in AudioOptionsManager.cs
-        musicSlider.value = PlayerPrefs.GetFloat("MusicVolume", 1f);
-        sfxSlider.value = PlayerPrefs.GetFloat("SfxVolume", 1f);
+        musicSlider.value = PlayerPrefs.GetFloat("MusicVolume", 0.1f);
+        sfxSlider.value = PlayerPrefs.GetFloat("SfxVolume", 0.4f);
         Debug.Log("reading values from playerprefs about volume!");
 
         Debug.Log("SFX slider value: " + sfxSlider.value);
@@ -49,7 +48,9 @@ public class AudioManager : MonoBehaviour
             }
 
             if (sound.playOnAwake)
+            {
                 sound.source.Play();
+            }
         }
     }
     void MakeSingleton()

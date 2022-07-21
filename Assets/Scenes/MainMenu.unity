@@ -2240,10 +2240,10 @@ MonoBehaviour:
   sounds:
   - audioType: 1
     source: {fileID: 0}
-    clip: {fileID: 8300000, guid: 28a3aaa130899b447908a89b5c54160d, type: 3}
+    clip: {fileID: 8300000, guid: de1c6927c67bf5e4aa23529a9c06e8f4, type: 3}
     clipName: main_menu
     isLoop: 1
-    playOnAwake: 0
+    playOnAwake: 1
   - audioType: 0
     source: {fileID: 0}
     clip: {fileID: 8300000, guid: e7dc2e2bdc5f1e14c957a942e91a5303, type: 3}

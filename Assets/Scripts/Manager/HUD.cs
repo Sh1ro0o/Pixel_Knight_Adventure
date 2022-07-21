@@ -9,7 +9,7 @@ public class HUD : MonoBehaviour
     [SerializeField] Slider slider;
     [SerializeField] Combatant player;
     [SerializeField] Image fillImage;
-    [SerializeField] TextMeshProUGUI totalCoinsText;
+    [SerializeField] TextMeshProUGUI totalCoinsText, deathMessage;
 
     private void Start()
     {
@@ -35,5 +35,13 @@ public class HUD : MonoBehaviour
 
         //updates coins text
         totalCoinsText.text = GameManager.gameManager.totalCoins + GameManager.gameManager.coins + "";
+
+        if(player.IsDead())
+        {
+            deathMessage.gameObject.SetActive(true);
+            Debug.Log("Setting on");
+        }
+        else
+            deathMessage.gameObject.SetActive(false);
     }
 }
