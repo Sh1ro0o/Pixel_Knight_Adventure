@@ -93,7 +93,6 @@ public class DefaultEnemyMovement : MonoBehaviour
         Collider2D[] colliders = Physics2D.OverlapCircleAll(wallCheck.position, wallCheckRadius, wall);
         if (colliders.Length > 0)
         {
-            Debug.Log("touching wall!");
             return true;
         }
         else

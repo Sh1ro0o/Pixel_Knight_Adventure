@@ -23,8 +23,10 @@ public class PlayerCombat : Combatant
     {
         base.Start();
 
-        currentHealth = maxHealth;
-        currentDamage = maxDamage;
+        //checks if player has upgraded his health or attack yet, otherwise it sets the default value
+        currentHealth = PlayerPrefs.GetInt("PlayerHealth", maxHealth);
+        currentDamage = PlayerPrefs.GetInt("PlayerAttack", maxDamage);
+
         timeSinceLastAttack = attackCooldown;
         timeSinceLastTookDamage = invulnerableDuration;
     }
@@ -70,7 +72,6 @@ public class PlayerCombat : Combatant
                 //Checks if enemy is already dead
                 if (!(enemy.GetComponent<Combatant>().IsDead()))
                 {
-                    Debug.Log("You hit " + enemy.name);
                     enemy.GetComponent<Combatant>().TakeDamage(currentDamage);
                 }
             }
@@ -108,12 +109,12 @@ public class PlayerCombat : Combatant
     }
 
     //draws our sphere for detecting
-    private void OnDrawGizmosSelected()
+   /* private void OnDrawGizmosSelected()
     {
         // if attack point hasen't been assigned yet
         if (attackPointRadius == null)
             return;
 
         Gizmos.DrawWireSphere(attackPointRadius.position, attackRange);
-    }
+    }*/
 }

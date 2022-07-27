@@ -248,7 +248,6 @@ public class Character_2D_Controller : MonoBehaviour
             {
                 //we are grounded
                 isGrounded = true;
-                //Debug.Log("We are grounded!");
             }
         }
     }

@@ -47,6 +47,7 @@ GameObject:
   - component: {fileID: 1165252691295844874}
   - component: {fileID: 1165252691295844875}
   - component: {fileID: 4434651455429665902}
+  - component: {fileID: -3856421243108074450}
   m_Layer: 3
   m_Name: Player
   m_TagString: Untagged
@@ -251,6 +252,7 @@ MonoBehaviour:
   attackRange: 0.5
   spriteRenderer: {fileID: 1165252691295845105}
   invulnerableDuration: 1
+  bloodVFX: {fileID: 4059706985824833878, guid: e5a98f70dfef49641b7fdec5f941c733, type: 3}
 --- !u!114 &4434651455429665902
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -264,6 +266,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   respawnPoint: {x: 0, y: 0, z: 0}
+--- !u!114 &-3856421243108074450
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1165252691295844872}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c69c289a1a5f1574cacd17694d23d4d7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1165252692166171885
 GameObject:
   m_ObjectHideFlags: 0

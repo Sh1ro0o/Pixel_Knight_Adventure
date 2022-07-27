@@ -252,10 +252,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   slider: {fileID: 109767948892299951}
-  player: {fileID: 0}
+  player: {fileID: 1165252691295844875, guid: 0f2f10d3c0872a14a9faffb7337ded8a, type: 3}
   fillImage: {fileID: 109767949108730529}
   totalCoinsText: {fileID: 109767948383141770}
-  deathMessage: {fileID: 0}
+  deathMessage: {fileID: 6683229848467031318}
 --- !u!1 &109767948546608798
 GameObject:
   m_ObjectHideFlags: 0

@@ -13,6 +13,8 @@ public class BossTrigger : MonoBehaviour
     [SerializeField] CinemachineVirtualCamera vcam;
     CinemachineConfiner vcamConfiner;
 
+    [SerializeField] PlayerRespawnSystem playerRespawn;
+
     private void Start()
     {
         player = FindObjectOfType<PlayerCombat>();
@@ -35,6 +37,7 @@ public class BossTrigger : MonoBehaviour
             boss.ActivateBoss();
             bars.SetActive(true);
             vcamConfiner.enabled = true;
+            playerRespawn.respawnPoint = new Vector3(-7.6f, -1.4f, 0);
         }
     }
 }
