@@ -145362,6 +145362,18 @@ PrefabInstance:
       propertyPath: m_fontSize
       value: 36
       objectReference: {fileID: 0}
+    - target: {fileID: 109767948509328152, guid: ef287e91cf1144a43964d3aab203ecef, type: 3}
+      propertyPath: m_UiScaleMode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 109767948509328152, guid: ef287e91cf1144a43964d3aab203ecef, type: 3}
+      propertyPath: m_ReferenceResolution.x
+      value: 1920
+      objectReference: {fileID: 0}
+    - target: {fileID: 109767948509328152, guid: ef287e91cf1144a43964d3aab203ecef, type: 3}
+      propertyPath: m_ReferenceResolution.y
+      value: 1080
+      objectReference: {fileID: 0}
     - target: {fileID: 109767948509328154, guid: ef287e91cf1144a43964d3aab203ecef, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -146497,6 +146509,10 @@ PrefabInstance:
     - target: {fileID: 3133296118629474137, guid: 4c77ed3a23f51024f929a4fd1a2d4073, type: 3}
       propertyPath: m_Name
       value: PauseMenu
+      objectReference: {fileID: 0}
+    - target: {fileID: 3133296118629474138, guid: 4c77ed3a23f51024f929a4fd1a2d4073, type: 3}
+      propertyPath: m_UiScaleMode
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3133296118629474140, guid: 4c77ed3a23f51024f929a4fd1a2d4073, type: 3}
       propertyPath: m_Pivot.x
