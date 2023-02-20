@@ -1,4 +1,7 @@
 # Pixel_Knight_Adventure
+
+![project-4](https://user-images.githubusercontent.com/59924160/220194783-73a6c1ac-f3f5-4a27-b191-643f9e693149.png)
+
 A 2D game I made in unity.
 
 Play the browser version on: https://sh1ro0o.itch.io/pixel-knight-adventure for free.
